@@ -35,3 +35,16 @@ void test() async {
 
 // stream -------------
 // an asynchronous pipe of data
+Stream<String> getName() {
+  return Stream.periodic(const Duration(seconds: 1), (value) {
+    return "Foo";
+  });
+}
+
+void test() async {
+  print("We are TESTING STREAM");
+
+  await for (final value in getName()) {
+    print(value); // returns "Foo" every 1 sec
+  }
+}
